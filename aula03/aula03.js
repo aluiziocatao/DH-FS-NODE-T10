@@ -7,7 +7,6 @@ let organizacao = 'Petshop Node';
 // de modo que cada objeto irá representar um animal dentro da nossa lista de pets
 let pets = [
   {
-    id: 1,
     nome: 'Yoshi',
     tipo: 'cachorro',
     raca: 'Akita inu',
@@ -17,7 +16,6 @@ let pets = [
     servicos: []
   },
   {
-    id: 2,
     nome: 'Pituco',
     tipo: 'pássaro',
     raca: 'calopsita',
@@ -30,19 +28,18 @@ let pets = [
 
 // criando função para listar todos os objetos que temos dentro do array de pets, ou seja,
 // o propósito dessa função é listar todos animais contidos dentro da lista de pets
-const listarPets = () => {
-  pets.forEach((pet) => {
-    console.log("Nome: " + pet.nome);
-    console.log("Tipo: " + pet.tipo);
-  })
-} 
+function listarPets() {
+  for (let i = 0; i < pets.length; i++) {
+    console.log("Nome: " + pets[i].nome)
+    console.log("Tipo: " + pets[i].tipo)
+  }
+}
 
 // criando função que será utilizada dentro da função cadastrarPet, esta função tem o propósito de 
 // validar o objeto que estamos recebendo para certificar que iremos sempre passar um objeto válido
 // para a função cadastrarPet
-const validaDados = (novoPet) => {
+function validaDados(novoPet){
   return (
-    // novoPet.id &&
     novoPet.nome && 
     novoPet.tipo &&
     novoPet.raca &&
@@ -57,10 +54,9 @@ const validaDados = (novoPet) => {
 // que é o nosso array de objetos, ou seja, essa função tem propósito de adicionar um objeto contendo todas
 // as propriedades válidas (nome, tipo, raca, idade e genero) para que tenhamos um novo elemento/pet dentro 
 // da nossa lista de pets
-const cadastrarPet = (objetoPet) => {
+function cadastrarPet(objetoPet) {
   if(typeof objetoPet == "object"){
     if(validaDados(objetoPet)){
-      objetoPet.id = pets.length + 1
       pets.push(objetoPet)
       console.log(pets)
     } else {
@@ -75,7 +71,7 @@ const cadastrarPet = (objetoPet) => {
 // cadastrarPet que temos acima, porém, esta função invés de receber um objeto, ela tem como propósito 
 // receber 5 parâmetros para tratá-los e criar um objeto a partir dos mesmos, sendo assim, iremos 
 // ter o mesmo propósito de adicionar um elemento/pet dentro da nossa variável pets que é nosso array de objetos
-const adicionarPetDoVitao = (nome, tipo, raca, idade, genero) => {
+function adicionarPetDoVitao(nome, tipo, raca, idade, genero){
   let novoPet = {
       nome: nome,
       tipo: tipo,
@@ -94,25 +90,12 @@ let objPet = {
   tipo: 'desconhecido',
   raca: 'desconhecido',
   idade: 3,
-  genero: 'desconhecido',
-  vacinado: false
-};
-
-let objPet2 = {
-  nome: 'Novo Pet 2',
-  tipo: 'desconhecido',
-  raca: 'desconhecido',
-  idade: 3,
-  genero: 'desconhecido',
-  vacinado: false
+  genero: 'desconhecido'
 };
 
 // essas chamadas as funções abaixo servem para executarmos as mesmas e estão comentadas, mas, 
 // para conseguirem executar é só tirar o comentário de cada uma delas.
-cadastrarPet(objPet)
-cadastrarPet(objPet2)
-
-
+// cadastrarPet(objPet)
 // listarPets()
 // adicionarPetDoVitao('Victor', 'desconhecido', 'desconhecido', 25, 'desconhecido')
 
@@ -132,7 +115,7 @@ cadastrarPet(objPet2)
 
 // desafio cumprido utilizando metodo do nosso colega Orlando que tem o propósito de retornar
 // a quantidade e o nome de cada pet vacinado e também não vacinado em apenas uma função
-const vacinadosOrlando = (pets) => {
+function vacinadosOrlando(pets){
   let petsVacinados = [];
   let petsNaoVacinados = [];
   let numPetVac = 0;
@@ -157,7 +140,7 @@ const vacinadosOrlando = (pets) => {
 // vacinadosOrlando(pets);
 
 // funcao do nosso colega Arlei que esta retornando o array de objetos completo com todos animais nao vacinados
-const naoVacinados = (array) => {
+function naoVacinados(array) {
   let vacinados= [];
   for(let i in array){
     if(!array[i].vacinado) vacinados.push(array[i]);
@@ -167,7 +150,7 @@ const naoVacinados = (array) => {
 }
 
 // funcao do nosso colega Arlei que esta retornando o array de objetos completo com todos animais vacinados
-const vacinados = (array) => {
+function vacinados(array) {
   let vacinados= [];
   for(let i in array){
     if(array[i].vacinado) vacinados.push(array[i]);
@@ -180,45 +163,41 @@ const vacinados = (array) => {
 // vacinados(pets)
 
 // callbacks
-const calcular = (numero1, numero2, operacao) => {
+function calcular(numero1, numero2, operacao){
   operacao(numero1, numero2)
   console.log("A operação foi realizada com sucesso")
 }
 
-const soma = (numero1, numero2) => {
+function soma(numero1, numero2){
   console.log(numero1 + numero2)
 }
 
-const subtrai = (numero1, numero2) => {
+function subtrai(numero1, numero2){
   console.log(numero1 - numero2)
 }
 
-const divide = (numero1, numero2) => {
+function divide(numero1, numero2){
   console.log(numero1 / numero2)
 }
 
-const multiplica = (numero1, numero2) => {
+function multiplica(numero1, numero2){
   console.log(numero1 * numero2)
 }
 // calcular(10, 5, soma)
 
 // Desafio - criar uma funcao callback chamada servicosPrestados que tenha como dois servicos: dar banho no pet e tosar o pet
 // sendo assim teremos sempre que passar um pet da nossa lista de pets e tambem um servico que aquele pet ira utilzar
-const servicosPrestados = (pet, servico) => {
+function servicosPrestados(pet, servico) {
     servico(pet)
 }
 
-const darBanhoNoPet = (pet) => {
-  let dataDoServico = new Date()
-  dataDoServico = dataDoServico.getDate() + "/" + (dataDoServico.getMonth() + 1) + "/" + dataDoServico.getFullYear()
-  pet.servicos.push("Serviço de banho realizado em " + dataDoServico)
+function darBanhoNoPet(pet){
+  pet.servicos.push("banho")
   console.log("O pet " + pet.nome + " tomou banho")
 }
 
-const tosarPet = (pet) => {
-  let dataDoServico = new Date()
-  dataDoServico = dataDoServico.getDate() + "/" + (dataDoServico.getMonth() + 1) + "/" + dataDoServico.getFullYear()
-  pet.servicos.push("Serviço de tosa realizado em " + dataDoServico)
+function tosarPet(pet){
+  pet.servicos.push("tosa")
   console.log("O pet " + pet.nome + " foi tosado")
 }
 
@@ -231,13 +210,13 @@ const tosarPet = (pet) => {
 // No json nao temos as propriedades vacinado, servicos
 // dica : utilizar JSON.parse na sua string json para transformá-la em um array de objetos válidos
 
-const cadastrarPetsDoJsonSpreadOperator = (lista, json) => {
+function cadastrarPetsDoJsonSpreadOperator(lista, json){
   let arrayPets = JSON.parse(json)
   lista.push(...arrayPets)
   return lista
 }
 
-const cadastrarPetsDoJsonFor = (lista, json) => {
+function cadastrarPetsDoJsonFor(lista, json){
   let arrayPets = JSON.parse(json)
   for (let i = 0; i < arrayPets.length; i++) {
     lista.push(arrayPets[i])
@@ -247,76 +226,3 @@ const cadastrarPetsDoJsonFor = (lista, json) => {
 
 // console.log(cadastrarPetsDoJsonSpreadOperator(pets, json))
 // console.log(cadastrarPetsDoJsonFor(pets, json))
-
-// Desafio - filtrar todos pets com um determinado nome, ou, se não encontrar nenhum pet para retornar
-// exibir uma mensagem de que não encontrou nenhum pet com aquele nome informado
-const filtraPetPorNome = (nome) => {
-  let petsFiltrados = pets.filter((pet) => {
-    return pet.nome == nome
-  })
-
-  if(petsFiltrados.length == 0){
-    return "Nenhum pet foi encontrado com o nome " + nome
-  } else {
-    return petsFiltrados
-  }
-}
-
-// console.log(filtraPetPorNome('Yoshi'))
-
-//Desafio 1
-
-//Desafio 2 - de remover um pet específico
-
-const removerPet = (id) => {
-  let pet = pets.filter((pet) => {
-    return pet.id == id
-  })
-
-  if(pet.length != 0){
-    pets.splice(id - 1, 1)
-    // console.log(pets)
-  }else{
-    console.log("Nenhum pet foi encontrado com o id " + id);
-  }
-}
-
-// removerPet(1);
-
-//Desafio 3 - de alterar um pet especifico
-
-const atualizaPet = (id, objeto) => {
-  let pet = pets.find(pet => pet.id == id)
-  for(var propriedade in objeto){
-  if(propriedade == "nome"){
-       pet.nome = objeto[propriedade]
-  }
-  if(propriedade == "tipo"){
-      pet.tipo = objeto[propriedade]
-  }
-  if(propriedade == "raca"){
-    pet.raca = objeto[propriedade]
-  }
-  if(propriedade == "idade"){
-    pet.idade = objeto[propriedade]
-  }
-  if(propriedade == "genero"){
-    pet.genero = objeto[propriedade]
-  }
-  if(propriedade == "vacinado"){
-    pet.vacinado = objeto[propriedade]
-  }
-  }
-  console.log(pet)
-}
-
-let objetoPetAtualizado = {
-  nome: "Atualizando Nome Pet",
-  tipo: "Atualizando Tipo Pet",
-  raca: "Siames",
-  idade: 3,
-  genero: "Fêmea",
-  vacinado: false
-}
-
-// atualizaPet(2, objetoPetAtualizado)
