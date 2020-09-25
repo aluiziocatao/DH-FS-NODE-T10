@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 
 // importando rotas da aplicacao
-const routes = require('./routes')
+const routes = require('./routes/routes')
 
 app.use(routes)
 
