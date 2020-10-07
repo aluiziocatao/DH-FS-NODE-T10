@@ -8,6 +8,11 @@ main section p {
     text-align: center;
 }
 
+main section form{
+    margin: 0 auto;
+    width: 70%;
+}
+
 main section form label {
     display: block;
     font-size: 20px;
@@ -38,7 +43,3 @@ form div.form-inline button.botao-contato {
     border-radius: 10px;
 }
 
-form div.form-inline{
-    margin: 0 auto;
-    width: 70%;
-}
