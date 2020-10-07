@@ -49,7 +49,7 @@ header nav form{
     background-size: cover;
     background-position: center;
     display: inline-block;
-    margin: 10px 0 0 10px ;
+    margin: 0 15px 15px 0px ;
 }   
 
 .img-label{
@@ -92,4 +92,26 @@ header nav form{
     width: 90px;
     height: 40px;
     margin: 0px 100px ;
+}
+
+footer{
+    background-color: #ffb90f;
+    height: 100px;
+    width: 100%;
+    color: white;
+    text-align: center;
+    border-radius: 20px 20px 0 0;
+    font-size: 20px;
+    line-height: 100px;
+}
+
+/* PSEUDO-SELETORES*/
+
+section .product:hover {
+    opacity: 0.5;
+}
+
+header form input:focus {
+    border-color: black;
+    outline-color: black;
 }
