@@ -26,9 +26,9 @@ logo.addEventListener("mouseout",function(){
 
 //Aula 03
 
-let nome = document.querySelector('#input-nome');
+let nome = document.querySelector('#input-name');
 let email = document.querySelector('#input-email');
-let mensagem = document.querySelector('#textarea-mensagem');
+let mensagem = document.querySelector('#textarea-messae');
 let camposFormulario = document.querySelector('form').elements
 let form = document.querySelector('#form-contato')
 let invalidFeedbacks = document.querySelectorAll('.invalid-feedback')
@@ -85,8 +85,12 @@ for (let i = 0; i < camposFormulario.length; i++) {
 // })
 
 form.addEventListener('submit',function(event){
+    //previnindo comportamento default - atualização da pagina
     event.preventDefault();
 
+    validaFormContato(nome, email, mensagem);
+});
+    function validaFormContato(nomeParam, emailParam, mensagemParam){
     if (nome.value === ''){
         nome.classList.add('is-invalid');
         invalidFeedbacks[0].innerHTML = 'Preenchimento obrigatório'
@@ -102,4 +106,4 @@ form.addEventListener('submit',function(event){
         invalidFeedbacks[2].innerHTML = 'Preenchimento obrigatório'
 
     }
-})
+}

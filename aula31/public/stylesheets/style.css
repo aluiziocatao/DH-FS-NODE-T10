@@ -15,6 +15,11 @@ a {
 form textarea {
   resize: none;
 }
+.container{
+  margin-top: 100px;
+}
+
+
 
 .page-min-height {
   height: calc(100vh - 100px);

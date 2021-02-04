@@ -46,26 +46,24 @@
     <section id="contact" class="mt-5">
       <h1>Contato</h1>
       <p class="text-muted">Preencha o formulário abaixo para entrar em contato conosco</p>
-      <form action="/contato/registrar" method="POST">
+      <form action="" method="POST" id="form-contato" enctype="">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="input-nome">Nome</label>
             <input type="text" class="form-control" name="name" id="input-nome" placeholder="Insira seu nome">
+            <div class="invalid-feedback"></div>
           </div>
           <div class="form-group col-md-6">
             <label for="input-email">E-mail</label>
             <input type="email" class="form-control" name="email" id="input-email" placeholder="Email@exemplo.com">
+            <div class="invalid-feedback"></div>
           </div>
           <div class="form-group col-md-12">
             <label for="textarea-mensagem">Mensagem</label>
             <textarea class="form-control" name="message" id="textarea-mensagem" rows="10" placeholder="Insira sua mensagem aqui..."></textarea>
+            <div class="invalid-feedback"></div>
           </div>
-        </div>
-        <% if (typeof added !== "undefined") { %>
-          <div class="form-group col-md-12 alert alert-success">
-            Mensagem de contato enviada com sucesso
-          </div>
-        <% } %> 
+        </div>        
         <button type="submit" class="btn btn-primary">Enviar</button>
       </form>
     </section>

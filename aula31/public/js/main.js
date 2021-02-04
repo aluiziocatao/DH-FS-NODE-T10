@@ -85,21 +85,70 @@ for (let i = 0; i < camposFormulario.length; i++) {
 // })
 
 form.addEventListener('submit',function(event){
+    //previnindo comportamento default - atualização da pagina
     event.preventDefault();
 
-    if (nome.value === ''){
-        nome.classList.add('is-invalid');
-        invalidFeedbacks[0].innerHTML = 'Preenchimento obrigatório'
+    if (validaFormContato(nome, email, mensagem)){
+        enviaFormContato(nome, email,  mensagem);
+        limpaFormContato();
+    }
+});
+    function enviaFormContato(nomeParam, emailParam, mensagemParam){
+        let data = {
+            "name": nomeParam.value,
+            "email": emailParam.value,
+            "mensagem": mensagemParam.valeu
+        };
+        let headers = {
+            "Content-Type": "application/json",
+            "Access-Control-Origin": "*"
+        };
+        fetch('http://localhost:3000/contato/registrar', {
+            method: 'post',
+            headers: headers,
+            body: JSON.stringify(data)
+        }).then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            exibeOcultaMensagemDeSucesso(data.message);
+        });
+
     }
 
-    if (email.value === ''){
-        email.classList.add('is-invalid');
-        invalidFeedbacks[1].innerHTML = 'Preenchimento obrigatório'
+    function exibeOcultaMensagemDeSucesso(mensagem){
+        let mensagemDeSucesso = document.querySelector('.message-success');
+            mensagemDeSucesso.innerHTML = mensagem;
+            mensagemDeSucesso.classList.remove('d-none');
+
+            setTimeout(() => {
+                mensagemDeSucesso.classList.add('d-none');
+            }, 1500);
     }
 
-    if (mensagem.value === ''){
-        mensagem.classList.add('is-invalid')
-        invalidFeedbacks[2].innerHTML = 'Preenchimento obrigatório'
+    function validaFormContato(nomeParam, emailParam, mensagemParam){
+    let invalidFeedbacks = document.querySelectorAll('.invalid-feedback');
 
+    if(nomeParam.value === '' || emailParam.value === '' || mensagemParam.value === ''){
+        if (nomeParam.value === ''){
+            nomeParam.classList.add('is-invalid');
+            invalidFeedbacks[0].innerHTML = 'Preenchimento obrigatório'
+        }
+
+        if (emailParam.value === ''){
+            emailParam.classList.add('is-invalid');
+            invalidFeedbacks[1].innerHTML = 'Preenchimento obrigatório'
+        }
+
+        if (mensagemParam.value === ''){
+            mensagemParam.classList.add('is-invalid')
+            invalidFeedbacks[2].innerHTML = 'Preenchimento obrigatório'
+        }
+        return false
+    }else{
+        return true
     }
-})
+}
+
+    function limpaFormContato(){
+        document.querySelector('form').reset();
+    }
